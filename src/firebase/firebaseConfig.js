@@ -19,31 +19,41 @@ const database = firebase.database();
 database
   .ref()
   .set({
-    title: "blog title 2",
-    description: "blog description",
+    title: "blog title 1",
+    description: "blog description 2",
     author: {
-      name: "Harun",
-      surname: "Hatib",
+      name: "Sadık",
+      surname: "Turan",
     },
   })
   .then(() => {
     console.log("kayıt eklendi");
+    database
+      .ref("tags")
+      .set(["angular", "react"])
+      .then(() => {
+        console.log("etiketler eklendi.");
+      })
+      .catch((e) => {
+        console.log("hata", e);
+      });
   })
   .catch((e) => {
     console.log("hata", e);
   });
 
-// database.ref().set("yeni kayıt");
+console.log("uygulama çalıştı.");
 
+// database.ref().set("yeni kayıt");
 // database.ref().set({
-//   title: "blog title 1",
-// });
+//     title: "blog title 1"
+// })
 // database.ref("title").set("blog title");
 // database.ref("description").set("blog description");
 // database.ref("author").set({
-//   name: "Miray",
-//   surname: "Hatib",
-// });
-
-// database.ref("author/name").set("harun");
-// database.ref("tags").set(["react", "javascript", "react-native"]);
+//     name: "Çınar",
+//     surname: "Turan"
+// })
+// database.ref("author/name").set("Çınar");
+// database.ref("tags").set(["react","javascript","angular"]);
+// database.ref("tags").set(["react","javascript","asp.net"]);
