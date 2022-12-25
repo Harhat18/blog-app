@@ -5,27 +5,29 @@ import AppRouter from './routers/AppRouter';
 import "./App.css"
 
 import { createStore, combineReducers } from 'redux'
+import { v4 as uuid } from 'uuid';
 
-const state = {
-    blogs: [
-        {
-            id: 1,
-            title: 'blog title 1',
-            description: 'blog description 1',
-            dateAdded: 0
-        }
-    ],
-    auth: {
-        userid: 1,
-        username: 'sadikturan',
-        email: 'info@sadikturan.com'
+
+// ACTION CREATOR
+const addBlog = ({ title='', description='',dateAdded=0 }) => ({
+    type: "ADD_BLOG",
+    blog: {
+        id: uuid(),
+        title: title,
+        description: description,
+        dateAdded: dateAdded
     }
-}
+})
 
 const blogState = []
 
 const blogReducer = (state = blogState, action) => {
     switch (action.type) {
+        case "ADD_BLOG":
+            return [
+                ...state,
+                action.blog
+            ]
         default:
             return state;
     }
@@ -47,7 +49,13 @@ const store = createStore(
     })
 );
 
-console.log(store.getState());
+store.subscribe(()=> {
+    console.log(store.getState());
+})
+
+store.dispatch(addBlog({title: 'blog title 1', description: 'blog description 1'}))
+store.dispatch(addBlog({title: 'blog title 2', description: 'blog description 2', dateAdded: Date.now()}))
+
 
 
 ReactDOM.render(<AppRouter />, document.getElementById('root'));
