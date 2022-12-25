@@ -28,62 +28,18 @@ database
   })
   .then(() => {
     console.log("kayıt eklendi");
-    database
-      .ref("tags")
-      .set(["angular", "react"])
-      .then(() => {
-        console.log("etiketler eklendi.");
-      })
-      .catch((e) => {
-        console.log("hata", e);
-      });
   })
   .catch((e) => {
     console.log("hata", e);
   });
 
-// database
-//   .ref("title")
-//   .remove()
-//   .then(() => {
-//     console.log("başlık silindi");
-//   })
-//   .catch((e) => {
-//     console.log("hata");
-//   });
+database.ref().update({
+  title: "blog title",
+  description: "blog description",
+  "author/name": "Çınar",
+  imageUrl: "1.jpg",
+});
 
-// database
-//   .ref("author/name")
-//   .remove()
-//   .then(() => {
-//     console.log("isim silindi");
-//   })
-//   .catch((e) => {
-//     console.log("hata");
-//   });
-
-database.ref().set(null);
-
-// database
-//   .ref()
-//   .remove()
-//   .then(() => {
-//     console.log("tümü silindi");
-//   })
-//   .catch((e) => {
-//     console.log("hata");
-//   });
-
-// database.ref().set("yeni kayıt");
-// database.ref().set({
-//     title: "blog title 1"
-// })
-// database.ref("title").set("blog title");
-// database.ref("description").set("blog description");
-// database.ref("author").set({
-//     name: "Çınar",
-//     surname: "Turan"
-// })
-// database.ref("author/name").set("Çınar");
-// database.ref("tags").set(["react","javascript","angular"]);
-// database.ref("tags").set(["react","javascript","asp.net"]);
+database.ref("author").update({
+  name: "Ahmet",
+});
