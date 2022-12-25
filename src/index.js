@@ -3,79 +3,10 @@ import ReactDOM from 'react-dom';
 import * as serviceWorker from './serviceWorker';
 import AppRouter from './routers/AppRouter';
 import "./App.css"
+import configureStore from './store/configureStore';
+import { addBlog,removeBlog,editBlog  } from './actions/blogs'
 
-import { createStore, combineReducers } from 'redux'
-import { v4 as uuid } from 'uuid';
-
-
-// ACTION CREATOR
-const addBlog = ({ title='', description='',dateAdded=0 }) => ({
-    type: "ADD_BLOG",
-    blog: {
-        id: uuid(),
-        title: title,
-        description: description,
-        dateAdded: dateAdded
-    }
-})
-
-const removeBlog = ({ id }) => (
-    {
-        type: "REMOVE_BLOG",
-        id: id
-    }
-)
-
-const editBlog = (id,updates) => ({
-    type: "EDIT_BLOG",
-    id,
-    updates
-})
-
-const blogState = []
-
-const blogReducer = (state = blogState, action) => {
-    switch (action.type) {
-        case "ADD_BLOG":
-            return [
-                ...state,
-                action.blog
-            ]
-        case "REMOVE_BLOG":
-            return state.filter(({ id }) => {
-                return id !== action.id;
-            })
-        case "EDIT_BLOG":
-            return state.map((blog) => {
-                if(blog.id === action.id) {
-                    return {
-                        ...blog,
-                        ...action.updates
-                    }
-                } else {
-                    return blog;
-                }
-            })
-        default:
-            return state;
-    }
-}
-
-const authState = {};
-
-const authReducer = (state = authState, action) => {
-    switch (action.type) {
-        default:
-            return state
-    }
-}
-
-const store = createStore(
-    combineReducers({
-        blogs: blogReducer,
-        auth: authReducer
-    })
-);
+const store = configureStore();
 
 store.subscribe(()=> {
     console.log(store.getState());
