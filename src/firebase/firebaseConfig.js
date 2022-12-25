@@ -42,7 +42,37 @@ database
     console.log("hata", e);
   });
 
-console.log("uygulama çalıştı.");
+// database
+//   .ref("title")
+//   .remove()
+//   .then(() => {
+//     console.log("başlık silindi");
+//   })
+//   .catch((e) => {
+//     console.log("hata");
+//   });
+
+// database
+//   .ref("author/name")
+//   .remove()
+//   .then(() => {
+//     console.log("isim silindi");
+//   })
+//   .catch((e) => {
+//     console.log("hata");
+//   });
+
+database.ref().set(null);
+
+// database
+//   .ref()
+//   .remove()
+//   .then(() => {
+//     console.log("tümü silindi");
+//   })
+//   .catch((e) => {
+//     console.log("hata");
+//   });
 
 // database.ref().set("yeni kayıt");
 // database.ref().set({
