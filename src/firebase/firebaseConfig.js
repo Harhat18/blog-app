@@ -16,29 +16,5 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 
 const database = firebase.database();
-const blogs = [
-  {
-    id: "1",
-    title: "blog title 1",
-  },
-  {
-    id: "2",
-    title: "blog title 2",
-  },
-  {
-    id: "3",
-    title: "blog title 3",
-  },
-];
-database.ref().set(blogs);
 
-const users = {
-  sadikturan: {
-    name: "Sadık",
-    surname: "Turan",
-  },
-  cinarturan: {
-    name: "Çınar",
-    surname: "Turan",
-  },
-};
+export
