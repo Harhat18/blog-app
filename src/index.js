@@ -11,7 +11,7 @@ import './firebase/firebaseConfig'
 const store = configureStore();
 
 store.subscribe(()=> {
-    console.log(store.getState());
+    // console.log(store.getState());
 }) 
 
 const blog1 = store.dispatch(addBlog({title: 'blog title 1', description: 'blog description 1'}))
