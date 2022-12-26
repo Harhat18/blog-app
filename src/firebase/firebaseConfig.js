@@ -1,6 +1,6 @@
 import firebase from "firebase/app";
 import "firebase/database";
-
+import "firebase/auth";
 const firebaseConfig = {
   apiKey: "AIzaSyCjU3cyThQXxiuQI0-BO-SQkS5KVacebf0",
   authDomain: "react-blog-app-84344.firebaseapp.com",
@@ -14,5 +14,5 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 
 const database = firebase.database();
-
-export { database as default };
+const googleAuthProvider = new firebase.auth.GoogleAuthProvider();
+export { database as default, googleAuthProvider, firebase };
